@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Text } from './Feedback.styled';
+import { List} from './Feedback.styled';
 
 export const Statistics = ({
   good,
@@ -28,10 +28,4 @@ Statistics.propTypes = {
   positivePercentage: PropTypes.number.isRequired,
 };
 
-export const Notification = ({ message }) => {
-  return <Text>{message}</Text>;
-};
-
-Notification.propTypes = {
-  message: PropTypes.string.isRequired,
-};
+export default Statistics;
