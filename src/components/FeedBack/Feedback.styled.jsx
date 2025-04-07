@@ -8,3 +8,8 @@ export const List = styled.ul`
   margin-left: 40px;
   font-size: 22px;
 `;
+
+export const Text = styled.p`
+  text-align: center;
+  font-size: 26px;
+`;

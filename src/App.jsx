@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Container } from './App.styled';
-import { Section } from '../Section/Section';
-import { FeedbackOptions } from '../FeedbackOptions/FeedbackOptions';
-import { Statistics } from '../Statistics/Statistics';
-import { Notification } from '../Notification/Notification';
+import { Section } from './components/Section/Section';
+import { FeedbackOptions } from './components/Options/Options';
+import { Statistics, Notification } from './components/Feedback/Feedback';
 
 export class App extends Component {
   state = {
@@ -12,9 +11,27 @@ export class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = state => {
-    this.setState(prevState => ({ [state]: prevState[state] + 1 }));
+   componentDidMount() {
+    const savedFeedback = localStorage.getItem('feedback');
+    if (savedFeedback) {
+      this.setState(JSON.parse(savedFeedback));
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState !== this.state) {
+      localStorage.setItem('feedback', JSON.stringify(this.state));
+    }
+  }
+  
+ handleReset = () => {
+    this.setState({ good: 0, neutral: 0, bad: 0 });
+ };
+  
+  onLeaveFeedback = type => {
+    this.setState(prev => ({ [type]: prev[type] + 1 }));
   };
+
 
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
@@ -38,6 +55,8 @@ export class App extends Component {
           <FeedbackOptions
             onLeaveFeedback={this.onLeaveFeedback}
             options={options}
+            onReset={this.handleReset}
+            total={totalFeedback}
           />
         </Section>
         <Section title="Statistics">
@@ -50,7 +69,7 @@ export class App extends Component {
               positivePercentage={totalPercentage}
             />
           ) : (
-            <Notification message="There is no feedback" />
+            <Notification message="no feedback yet" />
           )}
         </Section>
       </Container>

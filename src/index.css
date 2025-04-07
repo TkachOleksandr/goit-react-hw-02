@@ -1,10 +1,5 @@
-@import-normalize; /* bring in normalize.css styles */
-
 body {
-  background: linear-gradient(to bottom, #1c2748, #5d5959);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+  background: black;
 
   margin: 0;
   overflow: hidden;

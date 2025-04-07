@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, Button } from './FeedbackOptions.styled';
+import { Wrapper, Button } from './Options.styled';
 
-export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+export const FeedbackOptions = ({ options, onReset, total, onLeaveFeedback }) => {
   return (
     <Wrapper>
       {options.map(option => (
@@ -14,6 +14,11 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
           {option}
         </Button>
       ))}
+      {total > 0 && (
+        <Button onClick={onReset}>
+          Reset
+        </Button>
+        )}
     </Wrapper>
   );
 };
