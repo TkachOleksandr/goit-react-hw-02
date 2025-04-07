@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container } from './App.styled';
 import { Section } from './components/Section/Section';
 import { FeedbackOptions } from './components/Options/Options';
-import { Statistics, Notification } from './components/Feedback/Feedback';
+import { Statistics, Notification } from './components/FeedBack/Feedback';
 
 export class App extends Component {
   state = {
